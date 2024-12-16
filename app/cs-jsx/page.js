@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from 'react'
 
-export default function ProductPage(props) {
+export default function CsJsxPage(props) {
   return (
     <>
-      <div>Product Page</div>
+      <div>JSX</div>
     </>
   )
 }
