@@ -18,13 +18,9 @@ export default function CounterPage(props) {
         <ul>
           {Array(5)
             .fill(0)
-            .map((v, i) => {
-              if (i % 2) {
-                return <li key={i}>{total + i}</li>
-              } else {
-                return <li key={i}>{i}</li>
-              }
-            })}
+            .map((v, i) =>
+              i % 2 ? <li key={i}>{total + i}</li> : <li key={i}>{i}</li>
+            )}
         </ul>
       </h1>
       <button
