@@ -1,0 +1,10 @@
+.container {
+  max-width: 50%;
+  margin: 100px auto;
+  background-color: #bfa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
