@@ -1,0 +1,23 @@
+.nav-bar {
+  list-style: none;
+  display: flex;
+  justify-content: end;
+  background-color: #53565c;
+  padding: 10px;
+}
+.nav-bar li {
+  margin-left: 5px;
+}
+.nav-bar li:nth-child(-n + 2)::after {
+  content: '';
+  border-left: 1px solid #fff;
+  margin-left: 5px;
+}
+.nav-bar li a:hover {
+  color: #976666;
+}
+
+.nav-bar li a {
+  text-decoration: none;
+  color: #fff;
+}

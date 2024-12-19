@@ -1,7 +1,7 @@
 'use client'
 import './logs.css'
 import React, { useState, useEffect } from 'react'
-import LogItem from './logitem.js'
+import LogItem from '../logitem/page.js'
 export default function ComponentsLogs(props) {
   const mySend = [
     {
@@ -22,14 +22,24 @@ export default function ComponentsLogs(props) {
     { date: new Date('2023-1-5'), desc: '學習降龍十八掌', time: 60 },
     { date: new Date('2023-1-8'), desc: '學習九陰白骨爪', time: 20 },
   ]
-  const myItem =mySend.map((i, v) => (
-    <LogItem key={v} {...i} />
-  ))
+
+  const [plan, setPlan] = useState(mySend)
+  useEffect(() => {
+    if (props[0]?.add) {
+      setPlan((prevPlan) => [
+        ...prevPlan,
+        {
+          date: new Date('2023-1-5'),
+          desc: '學習降龍十八掌',
+          time: 60,
+        },
+      ])
+    }
+  }, [props[0]?.add])
+  const myItem = plan.map((i, v) => <LogItem key={v} {...i} />)
   return (
     <>
-      <div className={'container'}>
-        {myItem}
-      </div>
+      <div className={'container'}>{myItem}</div>
     </>
   )
 }
