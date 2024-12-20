@@ -5,14 +5,13 @@ import style from './style.module.css'
 import Logs from '../logs/page.js'
 import next from 'next'
 export default function NavbarPage(props) {
-  const logData = [{ add: 0 }]
+  const logData = { add: 0 }
   const [logs, setLog] = useState(logData)
   const handlerAddPlan = () => {
-    const nextData = logs.map((r) => {
-      return { ...r, add: r.add + 1 }
-    })
+    const nextData = { ...logs, add: logs.add + 1 }
     setLog(nextData)
   }
+
   return (
     <>
       <ul className={style['nav-bar']}>
