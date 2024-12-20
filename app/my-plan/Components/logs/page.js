@@ -2,6 +2,7 @@
 import './logs.css'
 import React, { useState, useEffect } from 'react'
 import LogItem from '../logitem/page.js'
+import Form from '../form/page.js'
 export default function ComponentsLogs(props) {
   const mySend = [
     {
@@ -25,21 +26,22 @@ export default function ComponentsLogs(props) {
 
   const [plan, setPlan] = useState(mySend)
   useEffect(() => {
-    if (props[0]?.add) {
-      setPlan((prevPlan) => [
-        ...prevPlan,
-        {
-          date: new Date('2023-1-5'),
-          desc: '學習降龍十八掌',
-          time: 60,
-        },
-      ])
+    if (props.add) {
+      const nextData = [
+        ...plan,
+        { date: new Date('2023-1-8'), desc: '學習九陰白骨爪', time: 20 },
+      ]
+      setPlan(nextData)
     }
-  }, [props[0]?.add])
+  }, [props.add])
+
   const myItem = plan.map((i, v) => <LogItem key={v} {...i} />)
   return (
     <>
-      <div className={'container'}>{myItem}</div>
+      <div className={'container'}>
+        {myItem}
+        {<Form />}
+      </div>
     </>
   )
 }
