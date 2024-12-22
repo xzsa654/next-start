@@ -5,11 +5,9 @@ import style from './style.module.css'
 import Logs from '../logs/page.js'
 import next from 'next'
 export default function NavbarPage(props) {
-  const logData = { add: 0 }
-  const [logs, setLog] = useState(logData)
+  const [add, setAdd] = useState(0)
   const handlerAddPlan = () => {
-    const nextData = { ...logs, add: logs.add + 1 }
-    setLog(nextData)
+    setAdd((prev) => prev + 1)
   }
 
   return (
@@ -32,7 +30,7 @@ export default function NavbarPage(props) {
           <a href="#">刪除資料</a>
         </li>
       </ul>
-      <Logs {...logs} />
+      <Logs add={add} />
     </>
   )
 }
