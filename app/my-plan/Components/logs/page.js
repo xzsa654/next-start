@@ -34,7 +34,13 @@ export default function ComponentsLogs(props) {
           i += plan.length
           return (
             <Card key={i} className="my-form">
-              <Form plan={plan} setPlan={setPlan} />
+              <Form
+                plan={plan}
+                setPlan={setPlan}
+                myForm={myForm}
+                setMyForm={setMyForm}
+                setAdd={props.setAdd}
+              />
             </Card>
           )
         })
