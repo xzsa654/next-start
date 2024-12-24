@@ -1,12 +1,51 @@
 'use client'
+import './styles.css'
+import React from 'react'
+import { motion } from 'framer-motion'
+const TextAnimation = () => {
+  const text = 'EventureArts'
 
-import React, { useState, useEffect } from 'react'
-import WawaBoyfirend from './_components/wawa-boyfriend.js'
-export default function Page(props) {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.5,
+      },
+    },
+  }
+
+  const item = {
+    hidden: { opacity: 0, color: 'transparent' },
+    show: {
+      opacity: 1,
+      color: 'white',
+      transition: { duration: 0.8 },
+    },
+  }
+
   return (
-    <>
-      {/* <div>Page</div> */}
-      <WawaBoyfirend />
-    </>
+    <div className="flex justify-center items-center h-screen bg-gray-900">
+      <motion.div
+        style={{ backgroundColor: 'black' }}
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="flex"
+      >
+        {text.split('').map((char, index) => (
+          <motion.span
+            key={index}
+            variants={item}
+            className="text-4xl font-bold"
+          >
+            {char}
+          </motion.span>
+        ))}
+      </motion.div>
+    </div>
   )
 }
+
+export default TextAnimation
