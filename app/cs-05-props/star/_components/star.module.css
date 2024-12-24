@@ -1,0 +1,18 @@
+.on {
+  color: var(--fill-color);
+}
+
+.off {
+  color: var(--empty-color);
+}
+
+.goodStyle {
+  color: red;
+}
+
+.starBtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

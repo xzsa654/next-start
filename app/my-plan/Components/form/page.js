@@ -2,7 +2,14 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import './form.css'
-export default function FormPage({ setPlan = () => {}, plan = [] }) {
+export default function FormPage({
+  setPlan = () => {},
+  plan = [],
+  myform = [],
+  setMyForm = () => {},
+  add = 0,
+  setAdd = () => {},
+}) {
   const [formValue, setFormValue] = useState({ date: '', desc: '', time: '' })
   const addItemHandle = (e) => {
     let nextData = {}
@@ -19,7 +26,11 @@ export default function FormPage({ setPlan = () => {}, plan = [] }) {
     e.preventDefault()
     const nextPlan = [...plan, formValue]
     setPlan(nextPlan)
+    const nextMyForm = myform.filter((r) => r.key !== plan.key)
+    setMyForm(nextMyForm)
+    setAdd((prev) => prev - 1)
   }
+
   return (
     <>
       <form onSubmit={addPlanHandle}>

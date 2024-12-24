@@ -30,7 +30,7 @@ export default function NavbarPage(props) {
           <a href="#">刪除資料</a>
         </li>
       </ul>
-      <Logs add={add} />
+      <Logs add={add} setAdd={setAdd} />
     </>
   )
 }
