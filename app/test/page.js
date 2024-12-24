@@ -1,5 +1,5 @@
 'use client'
-import './styles.css'
+import '../globals.css'
 import React from 'react'
 import { motion } from 'framer-motion'
 const TextAnimation = () => {
@@ -23,28 +23,34 @@ const TextAnimation = () => {
       color: 'white',
       transition: { duration: 0.8 },
     },
+    hover: {
+      scale: 0.8,
+    },
   }
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-900">
-      <motion.div
-        style={{ backgroundColor: 'black' }}
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="flex"
-      >
-        {text.split('').map((char, index) => (
-          <motion.span
-            key={index}
-            variants={item}
-            className="text-4xl font-bold"
-          >
-            {char}
-          </motion.span>
-        ))}
-      </motion.div>
-    </div>
+    <>
+      <div className="flex justify-center items-center h-screen bg-gray-900">
+        <motion.div
+          style={{ backgroundColor: 'black' }}
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="flex"
+          whileHover="hover"
+        >
+          {text.split('').map((char, index) => (
+            <motion.span
+              key={index}
+              variants={item}
+              className="text-4xl font-bold"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </motion.div>
+      </div>
+    </>
   )
 }
 
