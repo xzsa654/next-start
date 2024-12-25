@@ -1,20 +1,28 @@
 'use client'
 
 import { createContext, useState, useEffect, useContext } from 'react'
+import { useRouter } from 'next/navigation'
 
 const AuthContext = createContext(null)
 
 AuthContext.displayName = 'AuthContext'
 
 export function AuthProvider({ children }) {
-  const defaultVaule = { id: 0, name: 'Peter', email: '' }
-  const [auth, setAuth] = useState(defaultVaule)
+  const router = useRouter()
+  const defaultValue = { id: 0, name: 'Peter', email: '' }
+  const [auth, setAuth] = useState(defaultValue)
   const isAuth = !!auth?.id
-  const login = () => {
-    setAuth({ id: 1, name: 'John Doe', email: 'john@example.com' })
+  const login = (obj) => {
+    setAuth({ id: 1, name: obj.displayName, email: obj.email })
   }
   const logOut = () => {
-    setAuth(defaultVaule)
+    try {
+      setAuth(defaultValue)
+      localStorage.removeItem('auth')
+      router.push('/test')
+    } catch (error) {
+      console.error('Logout error:', error)
+    }
   }
   const send = { isAuth, logOut, login, auth }
   return (
