@@ -16,7 +16,6 @@ export default function TestTest1({
     const control = animate(startCount, endCount, { duration: time })
     return () => control.stop()
   }, [])
-
   return (
     <>
       <motion.span className={`text-lg ${color}`}>
