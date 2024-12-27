@@ -9,20 +9,15 @@ AuthContext.displayName = 'AuthContext'
 
 export function AuthProvider({ children }) {
   const router = useRouter()
-  const defaultValue = { id: 0, name: 'Peter', email: '' }
+  const defaultValue = ''
   const [auth, setAuth] = useState(defaultValue)
   const isAuth = !!auth?.id
   const login = (obj) => {
     setAuth({ id: 1, name: obj.displayName, email: obj.email })
   }
-  const logOut = () => {
-    try {
-      setAuth(defaultValue)
-      localStorage.removeItem('auth')
-      router.push('/test')
-    } catch (error) {
-      console.error('Logout error:', error)
-    }
+  const logOut = async () => {
+    await setAuth(defaultValue)
+    localStorage.removeItem('auth')
   }
   const send = { isAuth, logOut, login, auth }
   return (

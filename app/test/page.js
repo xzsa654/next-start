@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import TestTest1 from './_components/number-race/page'
 import DragConstraints from './_components/drag-item/page'
 import GooglePage from './_components/google/page'
-import FacebookPage from './_components/facebook/page'
 const TextAnimation = () => {
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
@@ -82,7 +81,6 @@ const TextAnimation = () => {
         </div>
         <div>
           <GooglePage />
-          <FacebookPage />
         </div>
       </div>
     </>

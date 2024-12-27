@@ -4,28 +4,29 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  FacebookAuthProvider,
   signOut,
 } from 'firebase/auth'
 import { firebaseConfig } from '../../_hooks/use-firebase'
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 auth.languageCode = 'cn'
-const provider = new GoogleAuthProvider()
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/use-auth'
-export default function GooglePage(props) {
+import LoginPage from '../../login/page'
+export default function GooglePage() {
+  // 將登入的信息回調給login函示
   const { login } = useAuth()
-  const router = useRouter()
-  const [isAuth, setIsAuth] = useState(
-    false || localStorage.getItem('auth') == 'true'
-  )
+  //是否登入的狀態
+  const [isAuth, setIsAuth] = useState(false)
+  //訪問權的狀態
   const [token, setToken] = useState('')
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    //監聽登入狀態是否有改變
+    auth.onAuthStateChanged(async (user) => {
+      //登入狀態
       if (user) {
         setIsAuth(true)
-        localStorage.setItem('auth', true)
         user.getIdToken().then((token) => {
           setToken(token)
         })
@@ -33,19 +34,26 @@ export default function GooglePage(props) {
     })
   }, [token])
 
-  const googleLoginHandler = (e) => {
+  //第三方登入函式
+  const thirdPartLoginHandler = (e) => {
+    let provider
+    //如果點擊的是google button就創建goole的第三方登入物件，反之
+    e.target.innerHTML == 'Google 登入'
+      ? (provider = new GoogleAuthProvider())
+      : (provider = new FacebookAuthProvider())
+    //彈出視窗
     signInWithPopup(auth, provider)
       .then((result) => {
+        //如果有成功創建，則取得訪問權
         if (result) {
+          //登入狀態
           setIsAuth(true)
-          localStorage.setItem('auth', true)
+
           const credential = GoogleAuthProvider.credentialFromResult(result)
           const token = credential.accessToken
-          console.log(result.user)
-
+          //將取得的會員資料回傳給use-auth紀錄
           const { displayName, photoURL, email } = result.user
           login({ displayName, photoURL, email })
-          router.push('/test/login')
         }
       })
       .catch((error) => {
@@ -55,22 +63,38 @@ export default function GooglePage(props) {
         const credential = GoogleAuthProvider.credentialFromError(error)
       })
   }
-  const loginOutHandler = async () => {
-    await signOut(auth)
-    setIsAuth(false)
-  }
-  if (!localStorage.getItem('auth')) {
-    loginOutHandler()
-  }
+
   return (
     <>
       {!isAuth ? (
-        <button className="text-white border " onClick={googleLoginHandler}>
-          Google 登入
-        </button>
+        <>
+          <button
+            className="text-white border me-5"
+            onClick={thirdPartLoginHandler}
+          >
+            Google 登入
+          </button>
+          <button
+            className="text-white border "
+            onClick={thirdPartLoginHandler}
+          >
+            Facebook 登入
+          </button>
+        </>
       ) : (
         <>
-          <p className="text-white">歡迎登入</p>
+          <div className="text-center text-white">
+            <LoginPage token={token} />
+            <button
+              className=" border "
+              onClick={() => {
+                signOut(auth)
+                setIsAuth(false)
+              }}
+            >
+              登出
+            </button>
+          </div>
         </>
       )}
     </>
