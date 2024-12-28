@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
 import { MoonLoader } from 'react-spinners'
+import useSWR from 'swr'
 export default function ProductCodePage() {
   const params = useParams()
+
   const router = useRouter()
   if (
     params.productCode == isNaN ||
@@ -14,36 +16,22 @@ export default function ProductCodePage() {
   ) {
     router.push('/cs-07-effect/product')
   }
-  const [loading, setLoading] = useState(true)
-  const [product, setProduct] = useState({
-    id: 0,
-    picture: '',
-    stock: 0,
-    name: '',
-    price: 0,
-    tags: '',
-  })
-  const getProduct = async (productCode) => {
-    const res = await fetch(
-      `https://my-json-server.typicode.com/eyesofkids/json-fake-data/products/${productCode}`
-    )
-    const data = await res.json()
-    setProduct(data)
-    setLoading(false)
-  }
-  useEffect(() => {
-    getProduct(params.productCode)
-  }, [])
+  const fetcher = (url) => fetch(url).then((r) => r.json())
+  const { data, error, isloading } = useSWR(
+    `http://localhost:3005/api/posts/${params.productCode}`,
+    fetcher
+  )
+
   return (
     <>
-      {loading ? (
+      {isloading ? (
         <MoonLoader />
       ) : (
         <div>
           <h1>商品詳細頁</h1>
           <hr />
-          <p>{product.name}</p>
-          <p>{product.price}</p>
+          <p>{data?.data?.title}</p>
+          <p>{data?.data?.content}</p>
         </div>
       )}
     </>

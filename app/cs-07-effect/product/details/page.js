@@ -2,25 +2,22 @@
 
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
+import useSWR from 'swr'
 export default function DetailsPage(props) {
   const searchParams = useSearchParams()
-  const productCode = searchParams.get('productCode')
-  const [product, setProduce] = useState({})
-  const getProduct = async (p) => {
-    const res = await fetch(
-      `https://my-json-server.typicode.com/eyesofkids/json-fake-data/products/${p}`
-    )
-    const data = await res.json()
-    setProduce(data)
-  }
-  useEffect(() => {
-    getProduct(productCode)
-  }, [])
+  const p = searchParams.get('productCode')
+  const fetcher = (url) => fetch(url).then((r) => r.json())
+
+  const { data, error, isLoading } = useSWR(
+    `https://my-json-server.typicode.com/eyesofkids/json-fake-data/products/${p}`,
+    fetcher
+  )
+
   return (
     <>
       <h1>商品詳細頁</h1>
-      <p>{product.name}</p>
-      <p>{product.price}</p>
+      <p>{data?.name}</p>
+      <p>{data?.price}</p>
     </>
   )
 }

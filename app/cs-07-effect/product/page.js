@@ -3,22 +3,13 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MoonLoader } from 'react-spinners'
+import useSWR from 'swr'
 export default function ProductPage() {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const getProducts = async () => {
-    const res = await fetch(
-      'https://my-json-server.typicode.com/eyesofkids/json-fake-data/products'
-    )
-    const data = await res.json()
-    setProducts(data)
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }
-  useEffect(() => {
-    getProducts()
-  }, [])
+  const fetcher = (url) => fetch(url).then((r) => r.json())
+  const { data, loading, error } = useSWR(
+    `https://my-json-server.typicode.com/eyesofkids/json-fake-data/products`,
+    fetcher
+  )
   const spiner = (
     <>
       <MoonLoader />
@@ -28,7 +19,7 @@ export default function ProductPage() {
     <>
       <h1>商品列表頁(使用useParams)</h1>
       <ul>
-        {products.map((product, i) => {
+        {data?.map((product, i) => {
           return (
             <li key={product.id}>
               <Link
@@ -44,7 +35,7 @@ export default function ProductPage() {
       <hr />
       <h1>商品列表頁(使用useSearchParams)</h1>
       <ul>
-        {products.map((product, i) => {
+        {data?.map((product, i) => {
           return (
             <li key={product.id}>
               <Link
