@@ -4,12 +4,14 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MoonLoader } from 'react-spinners'
 import useSWR from 'swr'
+import ComponentsAddList from './_components/add-list'
 export default function ProductPage() {
   const fetcher = (url) => fetch(url).then((r) => r.json())
   const { data, loading, error } = useSWR(
-    `https://my-json-server.typicode.com/eyesofkids/json-fake-data/products`,
+    `http://localhost:3005/api/posts`,
     fetcher
   )
+
   const spiner = (
     <>
       <MoonLoader />
@@ -19,23 +21,24 @@ export default function ProductPage() {
     <>
       <h1>商品列表頁(使用useParams)</h1>
       <ul>
-        {data?.map((product, i) => {
+        {data?.data?.map((v, i) => {
           return (
-            <li key={product.id}>
+            <li key={v.id}>
               <Link
                 className="font-bold"
-                href={`/cs-07-effect/product/${product.id}`}
+                href={`/cs-07-effect/product/${v.id}`}
               >
-                {product.name}/{product.price}元
+                {v.title}/{v.content}
               </Link>
             </li>
           )
         })}
       </ul>
       <hr />
-      <h1>商品列表頁(使用useSearchParams)</h1>
+      <ComponentsAddList />
+      {/* <h1>商品列表頁(使用useSearchParams)</h1>
       <ul>
-        {data?.map((product, i) => {
+        {data?.data?.map((product, i) => {
           return (
             <li key={product.id}>
               <Link
@@ -47,7 +50,7 @@ export default function ProductPage() {
             </li>
           )
         })}
-      </ul>
+      </ul> */}
     </>
   )
   return <>{loading ? spiner : display}</>

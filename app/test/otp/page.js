@@ -4,28 +4,26 @@ import React, { useState, useEffect } from 'react'
 
 export default function OtpPage() {
   const [otp, setOtp] = useState('')
-  const [minute, setMinute] = useState(2)
-  const [second, setSecond] = useState(0)
+  const [second, setSecond] = useState(30)
 
   const submitHandler = (e) => {
-    setMinute(1)
+    //預設值設定
     setSecond(30)
+    let timer = setInterval(() => {
+      setSecond((prev) => {
+        // 秒數跑動
+        if (prev > 0) {
+          return prev - 1
+        }
+        //秒數跑完停止計時函式
+        if (prev == 0) {
+          clearInterval(timer)
+          return 0
+        }
+      })
+    }, 100)
   }
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setSecond((prev) => prev - 1)
-      if (second == 0) {
-        setMinute((prev) => prev - 1)
-        setSecond(59)
-        if (minute == 0) {
-          setMinute(0)
-          setSecond(0)
-          clearTimeout(timer)
-        }
-      }
-    }, 10)
-  }, [second])
   return (
     <>
       <div className="">
@@ -42,17 +40,20 @@ export default function OtpPage() {
           }}
         />
         <button
-          className="border"
-          disabled={second == 0 && minute == 0 ? '' : 'disabled'}
+          className={
+            second == 0 || second == 30
+              ? 'underline decoration-red-400 text-red-400'
+              : 'text-gray-300'
+          }
+          disabled={second !== 0 && second !== 30 ? 'disabled' : ''}
           onClick={submitHandler}
         >
-          重新寄送
+          發送驗證碼
         </button>
 
         <div className="w-72 flex justify-end">
           <p>持續時間:</p>
           <span className="font-bold me-3">
-            {minute < 10 ? '0' + minute : minute}:
             {second < 10 ? '0' + second : second}
           </span>
         </div>
