@@ -69,11 +69,11 @@ const TextAnimation = () => {
         <div className="text-white m-8">
           數字競賽:
           <TestTest1
-            color="text-white" //改變顏色(tailwind)
-            startCount={0} //開始數字
-            endCount={50} //結束數字
-            time={2} //持續時間
-            isFloat={false} //是否需要小數
+            color="text-gray" //改變顏色(tailwind)
+            startCount={55} //開始數字
+            endCount={1000} //結束數字
+            time={1} //持續時間
+            isFloat={true} //是否需要小數
           />
         </div>
         <div>

@@ -4,11 +4,18 @@ export const metadata = {
 }
 import './globals.css'
 import Provider from './provider'
+import Menubar from './_components/menubar/menuBar'
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Provider>{children}</Provider>
+        <header>
+          <Menubar />
+        </header>
+        <main>
+          <Provider>{children}</Provider>
+        </main>
+        <footer></footer>
       </body>
     </html>
   )
