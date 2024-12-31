@@ -5,10 +5,12 @@ export const metadata = {
 import './globals.css'
 import Provider from './provider'
 import Menubar from './_components/menubar/menuBar'
+import PrelineScript from './preline'
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <PrelineScript />
         <header>
           <Menubar />
         </header>

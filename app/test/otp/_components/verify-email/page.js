@@ -68,7 +68,7 @@ export default function VerifyEmailPage() {
           className="flex transform transition-transform duration-200 ease-in-out"
         >
           <input
-            className={`w-52 mt-5 me-1 px-4 py-2 text-gray-700 bg-white border ${
+            className={`w-60 mt-5 me-1 px-4 py-2 text-gray-700 bg-white border ${
               verify ? 'border-gray-300' : 'border-red-400'
             }  rounded-lg 
                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
