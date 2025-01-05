@@ -2,33 +2,24 @@
 
 import React, { useState, useEffect } from 'react'
 import PasswordUpdatePage from '../password-update/page'
+import { emailSchema } from '@/app/test/_hooks/zod/page'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 export default function VerifyEmailPage() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(emailSchema) })
   const [second, setSecond] = useState(30)
   const [message, setMessage] = useState('')
   const [otpMessage, setOtpMessage] = useState('發送驗證碼')
-  //驗證email格式
-  const isEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
-
-  const submitHandler = async (e) => {
-    setMessage('')
-    e.preventDefault()
-
-    //設定預設值
-    const fd = new FormData(e.target)
-    const email = fd.get('email')
-    if (!email) {
-      return setMessage('請輸入email')
-    }
-    if (!isEmail(email)) {
-      return setMessage('email格式錯誤')
-    }
+  const [email, setEmail] = useState('')
+  const mySubmit = async (data) => {
     //fetch Otp和email到後端處理
     const res = await fetch('http://localhost:3001/verify-email', {
       method: 'POST',
-      body: JSON.stringify({ email }),
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/JSON',
       },
@@ -67,12 +58,12 @@ export default function VerifyEmailPage() {
       <div>
         <form
           name="otp"
-          onSubmit={submitHandler}
+          onSubmit={handleSubmit(mySubmit)}
           className="w-96 py-2 px-3 bg-white  rounded-lg dark:bg-neutral-900 dark:border-neutral-700"
         >
           <div className="relative flex">
             <input
-              type="email"
+              type="text"
               id="hs-floating-underline-input-email"
               className="peer py-4 px-0 block w-56 bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm placeholder:text-transparent focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-neutral-700 dark:text-neutral-400 dark:focus:ring-neutral-600 dark:focus:border-b-neutral-600
               focus:pt-6
@@ -84,6 +75,11 @@ export default function VerifyEmailPage() {
               autofill:pb-2"
               placeholder="********"
               name="email"
+              {...register('email')}
+              onChange={(e) => {
+                setMessage('')
+                setEmail(e.target.value)
+              }}
             />
             <label
               htmlFor="hs-floating-underline-input-email"
@@ -110,12 +106,13 @@ export default function VerifyEmailPage() {
               {otpMessage}
             </button>
           </div>
-          <p className="text-red-500 h-6 transition-opacity duration-500">
-            {message}
-          </p>
+          {(errors.email && (
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          )) ||
+            (message && <p className="text-red-500 text-sm">{message}</p>)}
         </form>
 
-        <PasswordUpdatePage second={second} />
+        <PasswordUpdatePage email={email} second={second} />
       </div>
     </>
   )

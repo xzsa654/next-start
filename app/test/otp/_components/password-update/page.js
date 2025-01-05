@@ -1,57 +1,31 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import HSPinInput from '@preline/pin-input'
+import { otpSchema } from '@/app/test/_hooks/zod/page'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 export default function PasswordUpdatePage({ second = 0, email = '' }) {
-  //儲存用戶所輸入的otp
-  const [otp, setOtp] = useState('')
-  const blackList = [
-    '驗證碼不可為空',
-    '密碼不可為空',
-    '密碼不合格式',
-    '密碼不相符',
-  ]
-  const [message, setMessage] = useState('')
   //取得填寫的otp到狀態內
-  useEffect(() => {
-    const el = HSPinInput.getInstance('#pin-input')
-    el.on('completed', ({ currentValue }) => {
-      setOtp(currentValue.join(''))
-    })
-  }, [])
+  const [message, setMessage] = useState('')
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(otpSchema) })
 
-  const passwordReg = (password) => {
-    const reg = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/
-    return reg.test(password)
-  }
+  const updateHandler = async (data) => {
+    let otp = ''
+    for (let i in data) {
+      i.includes('otp') && (otp += data[i])
+    }
+    const { password } = data
+    const nextData = { email, password, otp }
 
-  const updateHandler = async (e) => {
-    e.preventDefault()
-    setMessage('')
-    //判斷otp是否為空
-    if (!otp) {
-      return setMessage(blackList[0])
-    }
-    //驗證密碼
-    const fd = new FormData(e.target)
-    const password = fd.get('password')
-    const passwordConfirm = fd.get('passwordConfirm')
-    //密碼為空
-    if (!password || !passwordConfirm) {
-      return setMessage(blackList[1])
-    }
-    //密碼不符合格式
-    if (!passwordReg(password)) {
-      return setMessage(blackList[2])
-    }
-    if (password !== passwordConfirm) {
-      return setMessage(blackList[3])
-    }
     const res = await fetch('http://localhost:3001/forget-password', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, otp, password }),
+      body: JSON.stringify(nextData),
     })
     const result = await res.json()
     if (!result.success) {
@@ -64,9 +38,7 @@ export default function PasswordUpdatePage({ second = 0, email = '' }) {
   return (
     <>
       <form
-        onSubmit={(e) => {
-          updateHandler(e)
-        }}
+        onSubmit={handleSubmit(updateHandler)}
         className="w-96 py-2 px-3 bg-white  rounded-lg dark:bg-neutral-900 dark:border-neutral-700"
       >
         <div className="flex items-center gap-x-4">
@@ -85,6 +57,7 @@ export default function PasswordUpdatePage({ second = 0, email = '' }) {
                     type="text"
                     placeholder={'輸入驗證碼'.split('')[i]}
                     data-hs-pin-input-item
+                    {...register(`otp${i}`)}
                   />
                 )
               })}
@@ -96,9 +69,15 @@ export default function PasswordUpdatePage({ second = 0, email = '' }) {
             </span>
           </div>
         </div>
-        <p className="text-red-500 h-6 transition-opacity duration-500">
-          {message.indexOf('驗證碼') !== -1 ? message : ''}
-        </p>
+        {Object.keys(errors).find((key) => key.startsWith('otp')) && (
+          <p className="text-red-500 text-sm">
+            {
+              errors[Object.keys(errors).find((key) => key.startsWith('otp'))]
+                .message
+            }
+          </p>
+        )}
+
         <div>
           <div className="relative my-2">
             <input
@@ -114,6 +93,7 @@ export default function PasswordUpdatePage({ second = 0, email = '' }) {
               autofill:pb-2"
               placeholder="you@password.com"
               name="password"
+              {...register('password')}
             />
             <label
               htmlFor="hs-floating-underline-input-password"
@@ -130,13 +110,13 @@ export default function PasswordUpdatePage({ second = 0, email = '' }) {
               password
             </label>
           </div>
-          <p className="text-red-500 h-6 transition-opacity duration-500">
-            {message.indexOf('密碼') !== -1 ? message.split('密碼')[1] : ''}
-          </p>
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password.message}</p>
+          )}
           <div className="relative">
             <input
               type="password"
-              id="hs-floating-underline-input-passowrd"
+              id="hs-floating-underline-input-password-confirm"
               className="peer py-4 px-0 block w-56 bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm placeholder:text-transparent focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-neutral-700 dark:text-neutral-400 dark:focus:ring-neutral-600 dark:focus:border-b-neutral-600
               focus:pt-6
               focus:outline-none
@@ -147,9 +127,10 @@ export default function PasswordUpdatePage({ second = 0, email = '' }) {
               autofill:pb-2"
               placeholder="********"
               name="passwordConfirm"
+              {...register('confirmPassword')}
             />
             <label
-              htmlFor="hs-floating-underline-input-passowrd"
+              htmlFor="hs-floating-underline-input-password-confirm"
               className="absolute top-0 start-0 py-4 px-0 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
               peer-focus:scale-90
               peer-focus:translate-x-0.5
@@ -160,12 +141,14 @@ export default function PasswordUpdatePage({ second = 0, email = '' }) {
               peer-[:not(:placeholder-shown)]:-translate-y-1.5
               peer-[:not(:placeholder-shown)]:text-gray-500 dark:peer-[:not(:placeholder-shown)]:text-neutral-500 dark:text-neutral-500"
             >
-              password_again
+              confirm_password
             </label>
           </div>
-          <p className="text-red-500 h-6 transition-opacity duration-500">
-            {message.indexOf('密碼') !== -1 ? message.split('密碼')[1] : ''}
-          </p>
+          {errors.confirmPassword && (
+            <p className="text-red-500 text-sm">
+              {errors.confirmPassword.message}
+            </p>
+          )}
         </div>
         <button className="btn border border-gray-200 my-5">送出</button>
       </form>
