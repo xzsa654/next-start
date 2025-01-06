@@ -6,6 +6,7 @@ import PrelineScript from './preline'
 import './globals.css'
 import Provider from './provider'
 import Menubar from './_components/menubar/menuBar'
+import PrelineScript from './preline'
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

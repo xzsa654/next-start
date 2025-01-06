@@ -8,7 +8,6 @@ import { usePathname } from 'next/navigation'
 export default function Menubar() {
   // 取得目前路徑
   const pathname = usePathname()
-  console.log('pathname', pathname)
 
   const menuItems = [
     {
