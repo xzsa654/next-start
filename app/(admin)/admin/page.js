@@ -14,7 +14,7 @@ export default function Page(props) {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <div className="text-center">
+      <div className="my-5 text-center">
         <button
           className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
           onClick={() => setOpen(true)}
@@ -82,492 +82,225 @@ export default function Page(props) {
         </div>
       </Dialog>
 
-      <form>
-        <div className="space-y-12">
-          <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base/7 font-semibold text-gray-900">Profile</h2>
-            <p className="mt-1 text-sm/6 text-gray-600">
-              This information will be displayed publicly so be careful what you
-              share.
-            </p>
-
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="username"
-                  className="block text-sm/6 font-medium text-gray-900"
+      {/* Features */}
+      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <div className="relative p-6 md:p-16">
+          {/* Grid */}
+          <div className="relative z-10 lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
+            <div className="mb-10 lg:mb-0 lg:col-span-6 lg:col-start-8 lg:order-2">
+              <h2 className="text-2xl text-gray-800 font-bold sm:text-3xl dark:text-neutral-200">
+                Fully customizable rules to match your unique needs
+              </h2>
+              {/* Tab Navs */}
+              <nav
+                className="grid gap-4 mt-5 md:mt-10"
+                aria-label="Tabs"
+                role="tablist"
+                aria-orientation="vertical"
+              >
+                <button
+                  type="button"
+                  className="hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start hover:bg-gray-200 focus:outline-none focus:bg-gray-200 p-4 md:p-5 rounded-xl dark:hs-tab-active:bg-neutral-700 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 active"
+                  id="tabs-with-card-item-1"
+                  aria-selected="true"
+                  data-hs-tab="#tabs-with-card-1"
+                  aria-controls="tabs-with-card-1"
+                  role="tab"
                 >
-                  Username
-                </label>
-                <div className="mt-2">
-                  <div className="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <div className="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">
-                      workcation.com/
-                    </div>
-                    <input
-                      id="username"
-                      name="username"
-                      type="text"
-                      placeholder="janesmith"
-                      className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-span-full">
-                <label
-                  htmlFor="about"
-                  className="block text-sm/6 font-medium text-gray-900"
+                  <span className="flex gap-x-6">
+                    <svg
+                      className="shrink-0 mt-2 size-6 md:size-7 hs-tab-active:text-blue-600 text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" />
+                      <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" />
+                      <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z" />
+                      <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z" />
+                      <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z" />
+                    </svg>
+                    <span className="grow">
+                      <span className="block text-lg font-semibold hs-tab-active:text-blue-600 text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200">
+                        Advanced tools
+                      </span>
+                      <span className="block mt-1 text-gray-800 dark:hs-tab-active:text-gray-200 dark:text-neutral-200">
+                        Use Preline thoroughly thought and automated libraries
+                        to manage your businesses.
+                      </span>
+                    </span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className="hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start hover:bg-gray-200 focus:outline-none focus:bg-gray-200 p-4 md:p-5 rounded-xl dark:hs-tab-active:bg-neutral-700 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                  id="tabs-with-card-item-2"
+                  aria-selected="false"
+                  data-hs-tab="#tabs-with-card-2"
+                  aria-controls="tabs-with-card-2"
+                  role="tab"
                 >
-                  About
-                </label>
-                <div className="mt-2">
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows={3}
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    defaultValue={''}
-                  />
-                </div>
-                <p className="mt-3 text-sm/6 text-gray-600">
-                  Write a few sentences about yourself.
-                </p>
-              </div>
-
-              <div className="col-span-full">
-                <label
-                  htmlFor="photo"
-                  className="block text-sm/6 font-medium text-gray-900"
+                  <span className="flex gap-x-6">
+                    <svg
+                      className="shrink-0 mt-2 size-6 md:size-7 hs-tab-active:text-blue-600 text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m12 14 4-4" />
+                      <path d="M3.34 19a10 10 0 1 1 17.32 0" />
+                    </svg>
+                    <span className="grow">
+                      <span className="block text-lg font-semibold hs-tab-active:text-blue-600 text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200">
+                        Smart dashboards
+                      </span>
+                      <span className="block mt-1 text-gray-800 dark:hs-tab-active:text-gray-200 dark:text-neutral-200">
+                        Quickly Preline sample components, copy-paste codes, and
+                        start right off.
+                      </span>
+                    </span>
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className="hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start hover:bg-gray-200 focus:outline-none focus:bg-gray-200 p-4 md:p-5 rounded-xl dark:hs-tab-active:bg-neutral-700 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                  id="tabs-with-card-item-3"
+                  aria-selected="false"
+                  data-hs-tab="#tabs-with-card-3"
+                  aria-controls="tabs-with-card-3"
+                  role="tab"
                 >
-                  Photo
-                </label>
-                <div className="mt-2 flex items-center gap-x-3">
-                  <button
-                    type="button"
-                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  <span className="flex gap-x-6">
+                    <svg
+                      className="shrink-0 mt-2 size-6 md:size-7 hs-tab-active:text-blue-600 text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                      <path d="M5 3v4" />
+                      <path d="M19 17v4" />
+                      <path d="M3 5h4" />
+                      <path d="M17 19h4" />
+                    </svg>
+                    <span className="grow">
+                      <span className="block text-lg font-semibold hs-tab-active:text-blue-600 text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200">
+                        Powerful features
+                      </span>
+                      <span className="block mt-1 text-gray-800 dark:hs-tab-active:text-gray-200 dark:text-neutral-200">
+                        Reduce time and effort on building modern look design
+                        with Preline only.
+                      </span>
+                    </span>
+                  </span>
+                </button>
+              </nav>
+              {/* End Tab Navs */}
+            </div>
+            {/* End Col */}
+            <div className="lg:col-span-6">
+              <div className="relative">
+                {/* Tab Content */}
+                <div>
+                  <div
+                    id="tabs-with-card-1"
+                    role="tabpanel"
+                    aria-labelledby="tabs-with-card-item-1"
                   >
-                    Change
-                  </button>
-                </div>
-              </div>
-
-              <div className="col-span-full">
-                <label
-                  htmlFor="cover-photo"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  Cover photo
-                </label>
-                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                  <div className="text-center">
-                    <div className="mt-4 flex text-sm/6 text-gray-600">
-                      <label
-                        htmlFor="file-upload"
-                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                      >
-                        <span>Upload a file</span>
-                        <input
-                          id="file-upload"
-                          name="file-upload"
-                          type="file"
-                          className="sr-only"
-                        />
-                      </label>
-                      <p className="pl-1">or drag and drop</p>
-                    </div>
-                    <p className="text-xs/5 text-gray-600">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
+                    <img
+                      className="shadow-xl shadow-gray-200 rounded-xl dark:shadow-gray-900/20"
+                      src="https://images.unsplash.com/photo-1605629921711-2f6b00c6bbf4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&h=720&q=80"
+                      alt="Features Image"
+                    />
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base/7 font-semibold text-gray-900">
-              Personal Information
-            </h2>
-            <p className="mt-1 text-sm/6 text-gray-600">
-              Use a permanent address where you can receive mail.
-            </p>
-
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="first-name"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  First name
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="first-name"
-                    name="first-name"
-                    type="text"
-                    autoComplete="given-name"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="last-name"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  Last name
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="last-name"
-                    name="last-name"
-                    type="text"
-                    autoComplete="family-name"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="country"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  Country
-                </label>
-                <div className="mt-2 grid grid-cols-1">
-                  <select
-                    id="country"
-                    name="country"
-                    autoComplete="country-name"
-                    className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  <div
+                    id="tabs-with-card-2"
+                    className="hidden"
+                    role="tabpanel"
+                    aria-labelledby="tabs-with-card-item-2"
                   >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                  </select>
+                    <img
+                      className="shadow-xl shadow-gray-200 rounded-xl dark:shadow-gray-900/20"
+                      src="https://images.unsplash.com/photo-1665686306574-1ace09918530?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&h=720&q=80"
+                      alt="Features Image"
+                    />
+                  </div>
+                  <div
+                    id="tabs-with-card-3"
+                    className="hidden"
+                    role="tabpanel"
+                    aria-labelledby="tabs-with-card-item-3"
+                  >
+                    <img
+                      className="shadow-xl shadow-gray-200 rounded-xl dark:shadow-gray-900/20"
+                      src="https://images.unsplash.com/photo-1598929213452-52d72f63e307?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&h=720&q=80"
+                      alt="Features Image"
+                    />
+                  </div>
                 </div>
-              </div>
-
-              <div className="col-span-full">
-                <label
-                  htmlFor="street-address"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  Street address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="street-address"
-                    name="street-address"
-                    type="text"
-                    autoComplete="street-address"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                  />
+                {/* End Tab Content */}
+                {/* SVG Element */}
+                <div className="hidden absolute top-0 end-0 translate-x-20 md:block lg:translate-x-20">
+                  <svg
+                    className="w-16 h-auto text-orange-500"
+                    width={121}
+                    height={135}
+                    viewBox="0 0 121 135"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 16.4754C11.7688 27.4499 21.2452 57.3224 5 89.0164"
+                      stroke="currentColor"
+                      strokeWidth={10}
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M33.6761 112.104C44.6984 98.1239 74.2618 57.6776 83.4821 5"
+                      stroke="currentColor"
+                      strokeWidth={10}
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M50.5525 130C68.2064 127.495 110.731 117.541 116 78.0874"
+                      stroke="currentColor"
+                      strokeWidth={10}
+                      strokeLinecap="round"
+                    />
+                  </svg>
                 </div>
-              </div>
-
-              <div className="sm:col-span-2 sm:col-start-1">
-                <label
-                  htmlFor="city"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  City
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="city"
-                    name="city"
-                    type="text"
-                    autoComplete="address-level2"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="region"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  State / Province
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="region"
-                    name="region"
-                    type="text"
-                    autoComplete="address-level1"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="postal-code"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  ZIP / Postal code
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="postal-code"
-                    name="postal-code"
-                    type="text"
-                    autoComplete="postal-code"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                  />
-                </div>
+                {/* End SVG Element */}
               </div>
             </div>
+            {/* End Col */}
           </div>
-
-          <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base/7 font-semibold text-gray-900">
-              Notifications
-            </h2>
-            <p className="mt-1 text-sm/6 text-gray-600">
-              lways let you know about important changes, but you pick what else
-              you want to hear about.
-            </p>
-
-            <div className="mt-10 space-y-10">
-              <fieldset>
-                <legend className="text-sm/6 font-semibold text-gray-900">
-                  By email
-                </legend>
-                <div className="mt-6 space-y-6">
-                  <div className="flex gap-3">
-                    <div className="flex h-6 shrink-0 items-center">
-                      <div className="group grid size-4 grid-cols-1">
-                        <input
-                          defaultChecked
-                          id="comments"
-                          name="comments"
-                          type="checkbox"
-                          aria-describedby="comments-description"
-                          className="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-                        />
-                        <svg
-                          fill="none"
-                          viewBox="0 0 14 14"
-                          className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25"
-                        >
-                          <path
-                            d="M3 8L6 11L11 3.5"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="opacity-0 group-has-[:checked]:opacity-100"
-                          />
-                          <path
-                            d="M3 7H11"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="opacity-0 group-has-[:indeterminate]:opacity-100"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="text-sm/6">
-                      <label
-                        htmlFor="comments"
-                        className="font-medium text-gray-900"
-                      >
-                        Comments
-                      </label>
-                      <p id="comments-description" className="text-gray-500">
-                        Get notified when someones posts a comment on a posting.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="flex h-6 shrink-0 items-center">
-                      <div className="group grid size-4 grid-cols-1">
-                        <input
-                          id="candidates"
-                          name="candidates"
-                          type="checkbox"
-                          aria-describedby="candidates-description"
-                          className="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-                        />
-                        <svg
-                          fill="none"
-                          viewBox="0 0 14 14"
-                          className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25"
-                        >
-                          <path
-                            d="M3 8L6 11L11 3.5"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="opacity-0 group-has-[:checked]:opacity-100"
-                          />
-                          <path
-                            d="M3 7H11"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="opacity-0 group-has-[:indeterminate]:opacity-100"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="text-sm/6">
-                      <label
-                        htmlFor="candidates"
-                        className="font-medium text-gray-900"
-                      >
-                        Candidates
-                      </label>
-                      <p id="candidates-description" className="text-gray-500">
-                        Get notified when a candidate applies for a job.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="flex h-6 shrink-0 items-center">
-                      <div className="group grid size-4 grid-cols-1">
-                        <input
-                          id="offers"
-                          name="offers"
-                          type="checkbox"
-                          aria-describedby="offers-description"
-                          className="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-                        />
-                        <svg
-                          fill="none"
-                          viewBox="0 0 14 14"
-                          className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25"
-                        >
-                          <path
-                            d="M3 8L6 11L11 3.5"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="opacity-0 group-has-[:checked]:opacity-100"
-                          />
-                          <path
-                            d="M3 7H11"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="opacity-0 group-has-[:indeterminate]:opacity-100"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="text-sm/6">
-                      <label
-                        htmlFor="offers"
-                        className="font-medium text-gray-900"
-                      >
-                        Offers
-                      </label>
-                      <p id="offers-description" className="text-gray-500">
-                        Get notified when a candidate accepts or rejects an
-                        offer.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <legend className="text-sm/6 font-semibold text-gray-900">
-                  Push notifications
-                </legend>
-                <p className="mt-1 text-sm/6 text-gray-600">
-                  These are delivered via SMS to your mobile phone.
-                </p>
-                <div className="mt-6 space-y-6">
-                  <div className="flex items-center gap-x-3">
-                    <input
-                      defaultChecked
-                      id="push-everything"
-                      name="push-notifications"
-                      type="radio"
-                      className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                    />
-                    <label
-                      htmlFor="push-everything"
-                      className="block text-sm/6 font-medium text-gray-900"
-                    >
-                      Everything
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-x-3">
-                    <input
-                      id="push-email"
-                      name="push-notifications"
-                      type="radio"
-                      className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                    />
-                    <label
-                      htmlFor="push-email"
-                      className="block text-sm/6 font-medium text-gray-900"
-                    >
-                      Same as email
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-x-3">
-                    <input
-                      id="push-nothing"
-                      name="push-notifications"
-                      type="radio"
-                      className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                    />
-                    <label
-                      htmlFor="push-nothing"
-                      className="block text-sm/6 font-medium text-gray-900"
-                    >
-                      No push notifications
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
+          {/* End Grid */}
+          {/* Background Color */}
+          <div className="absolute inset-0 grid grid-cols-12 size-full">
+            <div className="col-span-full lg:col-span-7 lg:col-start-6 bg-gray-100 w-full h-5/6 rounded-xl sm:h-3/4 lg:h-full dark:bg-neutral-800" />
           </div>
+          {/* End Background Color */}
         </div>
-
-        <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            className="text-sm/6 font-semibold text-gray-900"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Save
-          </button>
-        </div>
-      </form>
+      </div>
+      {/* End Features */}
     </>
   )
 }
