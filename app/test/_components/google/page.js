@@ -15,14 +15,14 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '@/hooks/use-auth'
 import LoginPage from '../../login/page'
 export default function GooglePage() {
-  // 將登入的信息回調給login函示
+  // 將登入的信息回調給 login 函示
   const { login } = useAuth()
-  //是否登入的狀態
+  // 是否登入的狀態
   const [isAuth, setIsAuth] = useState(false)
-  //訪問權的狀態
+  // 訪問權的狀態
   const [token, setToken] = useState('')
   useEffect(() => {
-    //監聽登入狀態是否有改變
+    // 監聽登入狀態是否有改變
     auth.onAuthStateChanged(async (user) => {
       //登入狀態
       if (user) {
@@ -34,19 +34,19 @@ export default function GooglePage() {
     })
   }, [token])
 
-  //第三方登入函式
+  // 第三方登入函式
   const thirdPartLoginHandler = (e) => {
     let provider
-    //如果點擊的是google button就創建goole的第三方登入物件，反之
+    // 如果點擊的是 google button 就創建 google 的第三方登入物件 ， 反之
     e.target.innerHTML == 'Google 登入'
       ? (provider = new GoogleAuthProvider())
       : (provider = new FacebookAuthProvider())
-    //彈出視窗
+    // 彈出視窗
     signInWithPopup(auth, provider)
       .then((result) => {
-        //如果有成功創建，則取得訪問權
+        //如果有成功創建 ， 則取得訪問權
         if (result) {
-          //登入狀態
+          // 登入狀態
           setIsAuth(true)
 
           const credential = GoogleAuthProvider.credentialFromResult(result)
